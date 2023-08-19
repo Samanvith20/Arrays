@@ -1,0 +1,13 @@
+int numberOfInversions(vector<int> &a, int n) {
+    int count = 0;  // Initialize a variable 'count' to keep track of the number of inversions
+
+    for (int i = 0; i < n; i++) {  // Iterate through each element in the array
+        for (int j = i + 1; j < n; j++) {  // Compare the current element with elements ahead of it
+            if (a[i] > a[j]) {  // Check if the current element is greater than the element ahead
+                count += 1;  // Increment the 'count' as an inversion is found
+            }
+        }
+    }
+    
+    return count;  // Return the total count of inversions
+}

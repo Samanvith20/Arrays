@@ -1,0 +1,29 @@
+#include <iostream>     // Include necessary headers
+#include <vector>
+#include <algorithm>
+
+using namespace std;    // Use the standard namespace for convenience
+
+void mergeTwoSortedArraysWithoutExtraSpace(vector<long long> &arr1, vector<long long> &arr2) {
+    int n = arr1.size(); // Get the size of arr1
+    int m = arr2.size(); // Get the size of arr2
+    
+    int left = n - 1;    // Initialize 'left' to the last index of arr1
+    int right = 0;       // Initialize 'right' to the first index of arr2
+    
+    // Iterate while 'left' is within valid range and 'right' is within valid range
+    while (left >= 0 && right < m) {
+        // If the element in arr1 at index 'left' is greater than or equal to the element in arr2 at index 'right'
+        if (arr1[left] >= arr2[right]) {
+            swap(arr1[left], arr2[right]); // Swap the elements between arr1 and arr2
+            left--; // Move 'left' one step to the left
+            right++; // Move 'right' one step to the right
+        } else {
+            break; // If the condition is not met, exit the loop
+        }
+    }
+    
+    // Sort arr1 and arr2 to ensure they are fully sorted after merging
+    sort(arr1.begin(), arr1.end());
+    sort(arr2.begin(), arr2.end());
+}

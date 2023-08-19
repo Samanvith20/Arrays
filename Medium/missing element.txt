@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& a, int N) {
+        int XOR1 = 0;
+        int XOR2 = 0;
+        int n = N - 1;
+        
+        // XOR all elements in the array (except the last one) with XOR2
+        // and XOR all numbers from 1 to n with XOR1
+        for (int i = 0; i < n; i++) {
+            XOR2 = XOR2 ^ a[i];
+            XOR1 = XOR1 ^ (i + 1);
+        }
+        
+        // XOR the last element in the array with XOR2
+        XOR2 = XOR2 ^ a[n];
+        
+        // XOR N with XOR1
+        XOR1 = XOR1 ^ N;
+        
+        // Return the XOR of XOR1 and XOR2 to get the missing number
+        return XOR1 ^ XOR2;
+    }
+};

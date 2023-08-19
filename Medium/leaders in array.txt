@@ -1,0 +1,22 @@
+vector<int> superiorElements(vector<int>&a) {
+    vector<int>ans;
+    int n= a.size();
+    int maxi=0;
+    for(int i=n-1;i>=0;i--)
+{
+    if(a[i]>maxi){
+        ans.push_back(a[i]);
+
+    }
+    //keep track for right max
+    maxi=max(maxi,a[i]);
+}   
+
+//leaders in array -> where everything on the right should be smaller
+
+
+
+ sort(ans.begin(),ans.end());//to get sorted order
+   return ans;
+
+}

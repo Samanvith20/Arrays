@@ -1,0 +1,22 @@
+#include <vector>
+#include <algorithm> // Include the algorithm header for max function
+#include <climits>   // Include the climits header for INT_MIN
+
+using namespace std;
+
+int subarrayWithMaxProduct(vector<int> &arr) {
+    int prefix = 1;    // Initialize prefix product
+    int suffix = 1;    // Initialize suffix product
+    int maxi = INT_MIN; // Initialize maximum product
+
+    for (int i = 0; i < arr.size(); i++) {
+        if (prefix == 0) prefix = 1; // Reset prefix product if it becomes zero
+        if (suffix == 0) suffix = 1; // Reset suffix product if it becomes zero
+
+        prefix = prefix * arr[i];    // Update prefix product
+        suffix = suffix * arr[i];    // Update suffix product
+        maxi = max(maxi, max(prefix, suffix)); // Update maximum product
+    }
+
+    return maxi; // Return the maximum product
+}

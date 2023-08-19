@@ -1,0 +1,37 @@
+vector<vector<int>> fourSum(vector<int>& nums, int target) {
+    sort(nums.begin(), nums.end()); // Sort the input array in ascending order
+    int n = nums.size(); // Get the size of the array
+    vector<vector<int>> ans; // Initialize a vector to store the result
+    
+    for (int i = 0; i < n; i++) { // Iterate through the array elements
+        if (i > 0 && nums[i] == nums[i - 1]) continue; // Skip duplicate elements
+        
+        for (int j = i + 1; j < n; j++) { // Nested loop to iterate through remaining elements
+            if (j != i + 1 && nums[j] == nums[j + 1]) continue; // Skip duplicate elements
+            
+            int k = j + 1; // Initialize a left pointer
+            int l = n - 1; // Initialize a right pointer
+            
+            while (k < l) { // Continue as long as left pointer is less than right pointer
+                long long sum = nums[i] + nums[j] + nums[k] + nums[l]; // Calculate the sum
+                
+                if (sum == target) { // If the sum is equal to the target
+                    vector<int> temp = {nums[i], nums[j], nums[k], nums[l]}; // Create a quadruplet vector
+                    ans.push_back(temp); // Add the quadruplet to the result vector
+                    
+                    k++; // Move the left pointer to the right
+                    l--; // Move the right pointer to the left
+                    
+                    while (k < l && nums[k] == nums[k - 1]) k++; // Skip duplicate elements
+                    while (k < l && nums[l] == nums[l + 1]) l--; // Skip duplicate elements
+                } else if (sum < target) {
+                    k++; // Increment the left pointer if sum is less than target
+                } else {
+                    l--; // Decrement the right pointer if sum is greater than target
+                }
+            }
+        }
+    }
+    
+    return ans; // Return the vector of quadruplets
+}

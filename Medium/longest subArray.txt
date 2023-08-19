@@ -1,0 +1,25 @@
+int longestSubarrayWithSumK(vector<int> a, long long k) {
+    int right = 0;
+    int left = 0;
+    long long sum = a[0];
+    int maxlong = 0;
+    int n = a.size();
+    
+    while (right < n) {
+        // Update sum with a[right] before entering the loop
+        sum += a[right];
+        
+        // Adjust left pointer while sum is greater than or equal to k
+        while (left <= right && sum >= k) {
+            if (sum == k) {
+                maxlong = max(maxlong, right - left + 1);
+            }
+            sum -= a[left];
+            left++;
+        }
+        
+        right++;
+    }
+    
+    return maxlong;
+}

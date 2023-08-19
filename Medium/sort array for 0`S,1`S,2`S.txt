@@ -1,0 +1,32 @@
+#include <bits/stdc++.h> 
+
+void sortArray(vector<int>& arr, int n)
+{
+    int low = 0;
+    int mid = 0;
+    int high = n - 1;
+    
+    while (mid <= high) {
+        if (arr[mid] == 0) {
+            swap(arr[low], arr[mid]);
+            low++;
+            mid++;
+        }
+        else if (arr[mid] == 1) {
+            mid++;
+        }
+        else {
+            swap(arr[mid], arr[high]);
+            high--;
+        }
+    }
+}
+The algorithm you're implementing is known as the "Dutch National Flag" algorithm, named after the Dutch national flag with its three horizontal bands of colors. This algorithm is used to sort an array of elements that have multiple distinct values (typically three) in linear time complexity.
+
+In your case, you're using the Dutch National Flag algorithm to sort an array containing only the values 0, 1, and 2. The algorithm divides the array into three regions:
+
+Region for 0s (Low Region): Elements less than 1 (0 in this case) are moved to the beginning of the array.
+
+Region for 1s (Mid Region): Elements equal to 1 remain in the middle.
+
+Region for 2s (High Region): Elements greater than 1 (2 in this case) are moved to the end of the array.

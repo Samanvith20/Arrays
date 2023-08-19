@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>  // Include the standard C++ library headers.
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+    // Define two arrays to track whether a row or column should be set to zero.
+    int col[n]={0};  // This array keeps track of which columns should be zeroed.
+    int row[m]={0};  // This array keeps track of which rows should be zeroed.
+
+    // Loop through the entire matrix to mark rows and columns that contain zeros.
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            if(matrix[i][j] == 0){
+                col[i] = 1;  // Mark the column containing zero.
+                row[j] = 1;  // Mark the row containing zero.
+            }
+        }
+    }
+
+    // Loop through the matrix again and set the elements to zero for marked rows and columns.
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            if(row[j] || col[i]){
+                matrix[i][j] = 0;  // If the current row or column should be zeroed, set the element to zero.
+            }
+        }
+    }
+
+    // Return the modified matrix with zeroed rows and columns.
+    return matrix;
+}
